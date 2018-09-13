@@ -41,6 +41,12 @@ function shoppingTime(memberId, money) {
         ['Sweater Uniklooh', 175000],
         ['Casing Handphone', 50000],
     ]
+    if (money < 50000) {
+        return 'Mohon maaf, uang tidak cukup'
+    }
+    if (memberId === undefined || memberId === '') {
+        return 'Mohon maaf, toko X hanya berlaku untuk member saja'
+    }
     var obj = {};
     obj.memberId = memberId;
     obj.money = money;
@@ -52,20 +58,14 @@ function shoppingTime(memberId, money) {
                 money -= sale[i][1]
                 obj.changeMoney = money;
             }
-            else if (money < 50000) {
-                return 'Mohon maaf, uang tidak cukup'
-            }
         }
-    }
-    if (memberId === undefined || memberId === '') {
-        return 'Mohon maaf, toko X hanya berlaku untuk member saja'
     }
     return obj
 }
 
 
 // TEST CASES
-console.log(shoppingTime('1820RzKrnWn08', 3000000));
+console.log(shoppingTime('1820RzKrnWn08', 2475000));
 console.log('')
 //{ memberId: '1820RzKrnWn08',
 // money: 2475000,
