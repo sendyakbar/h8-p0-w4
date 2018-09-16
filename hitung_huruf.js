@@ -7,34 +7,37 @@ lebih dulu. Jika tidak ditemukan kalimat dengan kata yang memiliki
 huruf berulang, return -1.*/
 
 function hitungHuruf(kata) {
+  // you can only write your code here!
   var arr = kata.split(' ')
-  var tempKata = '', maxIndex = 0
+  var temp = ''
+  var result = ''
+  var maxIndex = 0
 
   for (var i = 0; i < arr.length; i++) {
-    var count = 0;
-    tempKata = arr[i]
-    for (var j = 0; j < tempKata.length; j++) {
-      var tempHuruf = tempKata[j]
-
-      for (var k = j + 1; k < tempKata.length; k++) {
-        if (tempHuruf === tempKata[k]) {
-          count++
-        }
+      temp = arr[i]
+      var count = 0
+      for (var j = 0; j < temp.length; j++) {
+          for (var k = j + 1; k < temp.length; k++) {
+              if (temp[j] === temp[k]) {
+                  count++
+                  if (count > maxIndex) {
+                      maxIndex = count
+                      result = arr[i]
+                  }
+              }
+          }
       }
-    }
-    if (count > maxIndex) {
-      maxIndex = count
-      arr = tempKata
-    }
-    if (maxIndex > 0) {
-      return tempKata
-    }
   }
+  if (maxIndex <= 0) {
+      return -1
+  }
+  return result
 }
-  
-  // TEST CASES
-  console.log(hitungHuruf('Today, is the greatest day ever')); // greatest
-  // console.log(hitungHuruf('I am a passionate developer')); // passionate
-  // console.log(hitungHuruf('aku adalah anak gembala')); // adalah
-  // console.log(hitungHuruf('rajin pangkal kaya')); // pangkal
-  // console.log(hitungHuruf('mengayuh perahu di danau')); // danau
+
+// TEST CASES
+console.log(hitungHuruf('Today, is the greatest day ever')); // greatest
+console.log(hitungHuruf('I am a passionate developer')); // passionate
+console.log(hitungHuruf('aku adalah anak gembala')); // adalah
+console.log(hitungHuruf('rajin pangkal kaya')); // pangkal
+console.log(hitungHuruf('mengayuh perahu di danau')); // danau
+console.log(hitungHuruf('abcde fghijk lmnop')); // -1
