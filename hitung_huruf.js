@@ -7,24 +7,30 @@ lebih dulu. Jika tidak ditemukan kalimat dengan kata yang memiliki
 huruf berulang, return -1.*/
 
 function hitungHuruf(kata) {
-    // you can only write your code here!
-    var arr = kata.split(' ');
-    var letter = '';
-    for (var i = 0; i < arr.length; i++) {
-      var current = arr[i][0]
-      var count = 0;
-      for (var j = 0; j < arr[i].length; j++) {
-        if (arr[i][j] === current) {
-          var current = arr[i][j]
-          count = count + 1;
-          if (count > 0) {
-            modus = count;
-            letter = arr[i][j];
-          }
+  var arr = kata.split(' ')
+  var tempKata = '', maxIndex = 0
+
+  for (var i = 0; i < arr.length; i++) {
+    var count = 0;
+    tempKata = arr[i]
+    for (var j = 0; j < tempKata.length; j++) {
+      var tempHuruf = tempKata[j]
+
+      for (var k = j + 1; k < tempKata.length; k++) {
+        if (tempHuruf === tempKata[k]) {
+          count++
         }
       }
-    }return letter
+    }
+    if (count > maxIndex) {
+      maxIndex = count
+      arr = tempKata
+    }
+    if (maxIndex > 0) {
+      return tempKata
+    }
   }
+}
   
   // TEST CASES
   console.log(hitungHuruf('Today, is the greatest day ever')); // greatest
